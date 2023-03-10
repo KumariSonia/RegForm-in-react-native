@@ -10,12 +10,13 @@ const Edittext = (props) => {
   }
   return (
     <View>
-      <Text style={styles.inputTitle}>{props.title}</Text>
+      {props.title && <Text style={styles.inputTitle}>{props.title}</Text>}
       <View style={styles.inputContainer}>
-        <Image
+
+        {props.fieldIcon ? <Image
           style={styles.icon}
           source={props.fieldIcon}
-        />
+        /> : <View style={{ marginLeft: 15 }} />}
         <TextInput style={styles.input}
           underlineColorAndroid="transparent"
           placeholder={props.placeholderName}
@@ -25,9 +26,9 @@ const Edittext = (props) => {
 
         />
         {(props.title === "Password*" || props.title === "Confirm Password*") &&
-          <TouchableOpacity onPress={handlePress}>
+          <TouchableOpacity onPress={handlePress} >
             <Image
-              style={styles.icon}
+              style={[styles.icon, { marginTop: 15 }]}
               source={hide ? require('../icons/hide.png') : require('../icons/eye.png')}
 
             />

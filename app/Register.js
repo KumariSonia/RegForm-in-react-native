@@ -9,6 +9,7 @@ const phone = require('../icons/phone-call.png');
 const emailIcon = require('../icons/email.png');
 const padlock = require('../icons/padlock.png');
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import Header from './Header'
 
 
 const Register = () => {
@@ -133,13 +134,7 @@ const Register = () => {
 
    return (
       <View style={styles.container}>
-         <View style={styles.header}>
-            <Image
-               style={styles.arrow}
-               source={require('../icons/arrow.png')}
-            />
-            <Text style={styles.registerHeader}>Register</Text>
-         </View>
+         <Header title="Register" />
          <TouchableOpacity onPress={createTwoButtonAlert}>
             {imageUri ?
                <Image

@@ -2,8 +2,10 @@ import { StyleSheet } from "react-native";
 import color from "./color";
 
 export default styles = StyleSheet.create({
+    addressContainer: {
+        height: "15%"
+    },
     alert: {
-        // alignItems: 'center'
         marginLeft: 10
     },
     arrow: {
@@ -15,6 +17,16 @@ export default styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    dropDownStyle: {
+        flexDirection: 'row',
+        borderWidth: 1,
+        marginLeft: 35,
+        marginRight: 35,
+        marginBottom: 20,
+        marginTop: 0,
+        width: "82%",
+        borderColor: color.primary
+    },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -24,7 +36,7 @@ export default styles = StyleSheet.create({
         width: 20,
         height: 20,
         marginLeft: 15,
-        marginTop: 15,
+        alignSelf: 'center',
         marginRight: 10
     },
     input: {
@@ -38,7 +50,10 @@ export default styles = StyleSheet.create({
         marginLeft: 35,
         marginRight: 35,
         marginBottom: 20,
-        marginTop: 5
+        marginTop: 5,
+        width: "82%",
+        borderColor: color.primary,
+        borderRadius: 0,
     },
     inputTitle: {
         marginLeft: 35,
