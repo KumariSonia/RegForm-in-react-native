@@ -49,7 +49,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>UIStatusBarStyle</key>
-  <string>UIStatusBarStyleDefault</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
+	<key>Privacy – Photo Library Additions Usage Description</key>
+	<string>App needs photo library Access</string>
+	<key>Privacy – Camera Usage Description	</key>
+	<string>App needs Camera Access Permission for testing</string>
+	<key>Privacy – Microphone Usage Description</key>
+	<string>App needs Microphone Access Permission for testing</string>
 </dict>
 </plist>
