@@ -43,7 +43,7 @@ const Address = () => {
             <Edittext placeholderName="Address" handleChange={handleEmail} fieldIcon={building} />
             <Edittext placeholderName="Landmark" handleChange={handlePassword} fieldIcon={building} />
             <Edittext placeholderName="city" handleChange={handleEmail} fieldIcon={building} />
-            <SelectOptions data={data} setSelected={setSelected} value={selected} />
+            <SelectOptions data={data} setSelected={setSelected} value={selected} placeholderName='Select your state' />
             <Edittext placeholderName="Password" handleChange={handleEmail} fieldIcon={building} />
             <Button buttonName="Submit" onClick={() => login(email, password)} />
         </View >

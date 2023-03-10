@@ -3,7 +3,7 @@ import color from "./color";
 
 export default styles = StyleSheet.create({
     addressContainer: {
-        height: "15%"
+        height: 50
     },
     alert: {
         marginLeft: 10
@@ -39,6 +39,13 @@ export default styles = StyleSheet.create({
         alignSelf: 'center',
         marginRight: 10
     },
+    infoHeader: {
+        marginLeft: 35,
+        fontWeight: '900',
+        fontSize: 22,
+        color: color.infoHeader,
+        marginBottom: 15
+    },
     input: {
         height: 50,
         borderColor: color.primary,
@@ -58,8 +65,21 @@ export default styles = StyleSheet.create({
     inputTitle: {
         marginLeft: 35,
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 17,
         color: color.primary
+    },
+    nextButton: {
+        backgroundColor: color.primary,
+        padding: 12,
+        marginTop: 15,
+        height: 50,
+        width: "35%"
+    },
+    nextText: {
+        color: color.white,
+        fontWeight: 'bold',
+        fontSize: 18,
+        textAlign: 'center'
     },
     radioStyle: {
         marginTop: 2,
@@ -72,6 +92,21 @@ export default styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
         marginRight: '35%'
+    },
+    submitButton: {
+        backgroundColor: 'transparent',
+        padding: 10,
+        marginTop: 15,
+        height: 50,
+        width: "35%",
+        borderWidth: 2,
+        borderColor: color.primary,
+    },
+    submitButtonText: {
+        color: color.primary,
+        fontWeight: 'bold',
+        fontSize: 18,
+        textAlign: 'center'
     },
     textStyle: {
         textAlign: 'left',
