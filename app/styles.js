@@ -124,5 +124,66 @@ export default styles = StyleSheet.create({
         borderRadius: 100,
         borderWidth: 2,
         borderColor: color.primary
+    },
+    usersAddress: {
+        fontSize: 15,
+        color: color.black
+    },
+    usersArrow: {
+        flex: 1,
+        alignSelf: 'center'
+    },
+    usersArrowIcon: {
+        width: 30,
+        height: 30
+    },
+    usersButton: {
+        backgroundColor: color.buttonColor,
+        padding: 12,
+        marginTop: 20,
+        height: 50,
+        height: '8%'
+    },
+    usersButtonText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center'
+    },
+    userContent: {
+        flex: 1, flexDirection: 'row',
+        justifyContent: 'space-around',
+        borderWidth: 1,
+        padding: 10,
+        borderColor: color.grey
+    },
+    usersDetail: {
+        flex: 6,
+        alignSelf: 'center',
+        paddingLeft: 10
+    },
+    usersHeader: {
+        color: color.primary,
+        fontWeight: 'bold',
+        fontSize: 30,
+        alignSelf: 'center',
+        padding: 15
+    },
+    usersIcon: {
+        width: 70,
+        height: 70,
+        borderRadius: 100,
+        borderWidth: 1,
+        borderColor: color.primary
+    },
+    usersName: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: color.black,
+        paddingBottom: 5
+    },
+    usersPhoto: {
+        flex: 2,
+        paddingLeft: 12,
     }
 });
