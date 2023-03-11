@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, Image, PermissionsAndroid, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, PermissionsAndroid, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import Button from './Button'
 import Edittext from './Edittext'
 import styles from './styles'
@@ -10,6 +10,7 @@ const emailIcon = require('../icons/email.png');
 const padlock = require('../icons/padlock.png');
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Header from './Header'
+import { ScrollView } from 'react-native'
 
 
 const Register = () => {
@@ -133,38 +134,40 @@ const Register = () => {
       ]);
 
    return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
          <Header title="Register" />
-         <TouchableOpacity onPress={createTwoButtonAlert}>
-            {imageUri ?
-               <Image
-                  style={styles.tinyLogo}
-                  source={{ uri: imageUri }}
-               /> : <Image
-                  style={styles.tinyLogo}
-                  source={require('../icons/user.png')}
+         <ScrollView>
+            <TouchableOpacity onPress={createTwoButtonAlert}>
+               {imageUri ?
+                  <Image
+                     style={styles.tinyLogo}
+                     source={{ uri: imageUri }}
+                  /> : <Image
+                     style={styles.tinyLogo}
+                     source={require('../icons/user.png')}
+                  />
+               }
+            </TouchableOpacity>
+            <Edittext placeholderName="Enter your first name here" handleChange={handleEmail} title="First Name*" fieldIcon={user} />
+            <Edittext placeholderName="Enter your last name here" handleChange={handlePassword} title="Last Name*" fieldIcon={user} />
+            <Edittext placeholderName="Enter your 10 digit phone  number" handleChange={handleEmail} title="Phone Number*" fieldIcon={phone} />
+            <Edittext placeholderName="Enter your email here" handleChange={handlePassword} title="Email*" fieldIcon={emailIcon} />
+            <View>
+
+               <Text style={styles.inputTitle}>Gender</Text>
+               <RadioGroup
+                  radioButtons={radioButtons}
+                  onPress={onPressRadioButton}
+                  layout='row'
+                  containerStyle={styles.radioStyle}
                />
-            }
-         </TouchableOpacity>
-         <Edittext placeholderName="Enter your first name here" handleChange={handleEmail} title="First Name*" fieldIcon={user} />
-         <Edittext placeholderName="Enter your last name here" handleChange={handlePassword} title="Last Name*" fieldIcon={user} />
-         <Edittext placeholderName="Enter your 10 digit phone  number" handleChange={handleEmail} title="Phone Number*" fieldIcon={phone} />
-         <Edittext placeholderName="Enter your email here" handleChange={handlePassword} title="Email*" fieldIcon={emailIcon} />
-         <View>
+            </View>
 
-            <Text style={styles.inputTitle}>Gender</Text>
-            <RadioGroup
-               radioButtons={radioButtons}
-               onPress={onPressRadioButton}
-               layout='row'
-               containerStyle={styles.radioStyle}
-            />
-         </View>
-
-         <Edittext placeholderName="Password" handleChange={handleEmail} title="Password*" fieldIcon={padlock} />
-         <Edittext placeholderName="Confirm Password" handleChange={handlePassword} title="Confirm Password*" fieldIcon={padlock} />
+            <Edittext placeholderName="Password" handleChange={handleEmail} title="Password*" fieldIcon={padlock} />
+            <Edittext placeholderName="Confirm Password" handleChange={handlePassword} title="Confirm Password*" fieldIcon={padlock} />
+         </ScrollView>
          <Button buttonName="Next" onClick={() => login(email, password)} />
-      </View>
+      </SafeAreaView>
    )
 }
 export default Register

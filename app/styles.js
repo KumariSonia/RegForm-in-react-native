@@ -3,7 +3,7 @@ import color from "./color";
 
 export default styles = StyleSheet.create({
     addressContainer: {
-        height: 50
+        height: '6%'
     },
     alert: {
         marginLeft: 10

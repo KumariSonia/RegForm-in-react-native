@@ -10,13 +10,13 @@ import YourInfo from './app/YourInfo';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.container} >
-        {/* <Address /> */}
-        {/* <Register /> */}
-        {/* <YourInfo /> */}
-        <Users />
-        {/* <UserPopup /> */}
-      </ScrollView>
+      {/* <ScrollView style={styles.container} > */}
+      {/* <Address /> */}
+      {/* <Register /> */}
+      <YourInfo />
+      {/* <Users /> */}
+      {/* <UserPopup /> */}
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
