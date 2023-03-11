@@ -16,6 +16,7 @@
     "react-native": "0.71.3",
     "react-native-dropdown-select-list": "^2.0.4",
     "react-native-image-picker": "^5.1.0",
+    "react-native-modal": "^13.0.1",
     "react-native-radio-buttons-group": "^2.3.2",
     "react-native-select-dropdown": "^3.3.0"
   },

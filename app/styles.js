@@ -142,7 +142,6 @@ export default styles = StyleSheet.create({
         padding: 12,
         marginTop: 20,
         height: 50,
-        height: '8%'
     },
     usersButtonText: {
         color: 'white',
