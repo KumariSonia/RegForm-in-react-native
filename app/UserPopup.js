@@ -4,6 +4,7 @@ import color from "./color";
 import Modal from "react-native-modal";
 
 const UserPopup = (props) => {
+    const { userData } = props
     return (
         <Modal
             isVisible={props.modalVisible}
@@ -58,8 +59,8 @@ const UserPopup = (props) => {
                                         }}
                                         source={require('../icons/user-4.png')}
                                     />
-                                    <Text style={{ fontSize: 9, color: '#0000cc', marginTop: 5, fontWeight: '700' }}>johnsmith@gmail.com</Text>
-                                    <Text style={{ fontSize: 10, marginTop: 5, fontWeight: '600' }}>9896845670</Text>
+                                    <Text style={{ fontSize: 9, color: '#0000cc', marginTop: 5, fontWeight: '700' }}>{userData.email}</Text>
+                                    <Text style={{ fontSize: 10, marginTop: 5, fontWeight: '600' }}>{userData.phoneNumber}</Text>
                                 </View>
                                 <View style={{
                                     flex: 2,
@@ -70,20 +71,20 @@ const UserPopup = (props) => {
                                         fontSize: 18,
                                         color: color.black,
                                         marginBottom: 5
-                                    }}>John Smith</Text>
+                                    }}>{userData.firstName} {userData.lastName}</Text>
                                     <Text style={{
                                         fontWeight: '900',
                                         fontSize: 18,
                                         color: '#0000cc',
                                         marginBottom: 5
-                                    }}>UIX Designer</Text>
+                                    }}>{userData.designation}</Text>
                                     <Text style={{
                                         fontWeight: 'bold',
                                         fontSize: 15,
                                         color: color.black,
                                         lineHeight: 24,
                                     }}>
-                                        Casket Building Flat No-34 Landmark-IT Office {"\n"} Andheri East, Maharashtra,{"\n"} 400069
+                                        {userData.address} {userData.landmark} {userData.city} {userData.state} {userData.pincode}
 
                                     </Text>
                                 </View>
@@ -110,9 +111,9 @@ const UserPopup = (props) => {
                                 marginTop: 10,
                                 lineHeight: 25,
                             }}>
-                                Graduate {"\n"}
-                                Passing year -2017{"\n"}
-                                CGPA-9.25
+                                {userData.education} {"\n"}
+                                Passing year - {userData.yearOfPassing}{"\n"}
+                                CGPA - {userData.grade}
 
                             </Text>
 
@@ -135,8 +136,8 @@ const UserPopup = (props) => {
                                 marginTop: 10,
                                 lineHeight: 25,
                             }}>
-                                4 Years of Experience  {"\n"}
-                                Design Department
+                                {userData.experience} Years of Experience  {"\n"}
+                                {userData.domain}
 
                             </Text>
 
