@@ -6,13 +6,15 @@ import color from './color';
 import Header from './Header';
 import styles from './styles';
 import UserPopup from './UserPopup';
-const Users = () => {
+const Users = ({ navigation }) => {
+    const registerButton = () => {
+        navigation.navigate('Register')
+    }
     const [modalVisible, setModalVisible] = useState(false);
     return (
         <SafeAreaView style={styles.container}>
 
             <View style={styles.container} >
-                <Text style={styles.usersHeader}>Users</Text>
                 <ScrollView>
                     <TouchableOpacity style={styles.userContent} onPress={() => setModalVisible(true)}>
                         <View style={styles.usersPhoto}>
@@ -35,12 +37,12 @@ const Users = () => {
                 </ScrollView>
                 <TouchableOpacity
                     style={styles.usersButton}
+                    onPress={registerButton}
                 >
                     <Text style={styles.usersButtonText}> Register </Text>
                 </TouchableOpacity>
             </View >
             {modalVisible && <UserPopup modalVisible={modalVisible} setModalVisible={setModalVisible} />}
-            {/* </ScrollView> */}
         </SafeAreaView >
     )
 }

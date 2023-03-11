@@ -9,11 +9,10 @@ const phone = require('../icons/phone-call.png');
 const emailIcon = require('../icons/email.png');
 const padlock = require('../icons/padlock.png');
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import Header from './Header'
 import { ScrollView } from 'react-native'
 
 
-const Register = () => {
+const Register = ({ navigation }) => {
    const [imageUri, setImageUri] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('')
@@ -133,9 +132,12 @@ const Register = () => {
          },
       ]);
 
+   const yourInfo = () => {
+      navigation.navigate('Your Info')
+   }
+
    return (
       <SafeAreaView style={styles.container}>
-         <Header title="Register" />
          <ScrollView>
             <TouchableOpacity onPress={createTwoButtonAlert}>
                {imageUri ?
@@ -166,7 +168,7 @@ const Register = () => {
             <Edittext placeholderName="Password" handleChange={handleEmail} title="Password*" fieldIcon={padlock} />
             <Edittext placeholderName="Confirm Password" handleChange={handlePassword} title="Confirm Password*" fieldIcon={padlock} />
          </ScrollView>
-         <Button buttonName="Next" onClick={() => login(email, password)} />
+         <Button buttonName="Next" onClick={yourInfo} />
       </SafeAreaView>
    )
 }

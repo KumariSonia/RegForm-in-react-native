@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Edittext from './Edittext'
 import styles from './styles'
-import Header from './Header'
 import SelectOptions from './SelectOptions'
 
-const YourInfo = () => {
+const YourInfo = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [selected, setSelected] = React.useState("");
 
@@ -20,9 +19,16 @@ const YourInfo = () => {
         setEmail(text)
     }
 
+    const yourAddress = () => {
+        navigation.navigate('Your Address')
+    }
+
+    const onPreviousClick = () => {
+        navigation.goBack()
+    }
+
     return (
         <SafeAreaView style={styles.container}>
-            <Header title="Your Info" />
             <View style={styles.addressContainer} />
             <ScrollView style={{ height: '70%' }}>
 
@@ -39,11 +45,13 @@ const YourInfo = () => {
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', marginLeft: 10, marginRight: 10, height: '24%' }}>
                 <TouchableOpacity
                     style={styles.submitButton}
+                    onPress={onPreviousClick}
                 >
                     <Text style={styles.submitButtonText}> Previous </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.nextButton}
+                    onPress={yourAddress}
                 >
                     <Text style={styles.nextText}> Next </Text>
                 </TouchableOpacity>

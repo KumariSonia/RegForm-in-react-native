@@ -6,7 +6,7 @@ import styles from './styles'
 const building = require('../icons/building.png');
 import Header from './Header'
 import SelectOptions from './SelectOptions'
-const Address = () => {
+const Address = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
     const [selected, setSelected] = React.useState("");
@@ -51,16 +51,20 @@ const Address = () => {
     const login = (email, pass) => {
         alert('email: ' + email + ' password: ' + pass)
     }
+
+    const onSubmit = () => {
+        navigation.navigate('Users')
+    }
+
     return (
         <SafeAreaView style={styles.container}>
-            <Header title="Your Address" />
             <View style={styles.addressContainer} />
             <Edittext placeholderName="Address" handleChange={handleEmail} fieldIcon={building} />
             <Edittext placeholderName="Landmark" handleChange={handlePassword} fieldIcon={building} />
             <Edittext placeholderName="city" handleChange={handleEmail} fieldIcon={building} />
             <SelectOptions data={data} setSelected={setSelected} value={selected} placeholderName='Select your state' />
             <Edittext placeholderName="Password" handleChange={handleEmail} fieldIcon={building} />
-            <Button buttonName="Submit" onClick={() => login(email, password)} />
+            <Button buttonName="Submit" onClick={onSubmit} />
         </SafeAreaView >
     )
 }
