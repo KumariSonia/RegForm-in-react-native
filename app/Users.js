@@ -10,6 +10,7 @@ const Users = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [userData, setUserData] = useState([]);
     const [user, setUser] = useState();
+    const [img, setImg] = useState()
 
     const getAllUsers = async () => {
         //Api call to fetch all users
@@ -39,6 +40,9 @@ const Users = ({ navigation }) => {
         setUser(user);
     }
 
+    var base64Icon = 'data:image/jpeg;base64,MTA5LDEwNSwxMDgsMTE3LDQ2LDEwNiwxMTIsMTAxLDEwMw==';
+
+
     return (
         <SafeAreaView style={styles.container}>
 
@@ -46,11 +50,24 @@ const Users = ({ navigation }) => {
                 <ScrollView>
 
                     {userData.map((user) => {
-                        return (<TouchableOpacity style={styles.userContent} onPress={() => onUserClick(user)}>
+
+                        const blob = new Blob([Int8Array.from(user.image.data.data)], { type: user.image.contentType });
+
+                        var reader = new FileReader();
+
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = () => {
+                            var base64String = reader.result;
+                            setImg(base64String)
+                        }
+
+                        console.log("image ", img)
+
+                        return (<TouchableOpacity style={styles.userContent} onPress={() => onUserClick(user)} key={user._id}>
                             <View style={styles.usersPhoto}>
                                 <Image
                                     style={styles.usersIcon}
-                                    source={require('../icons/user-4.png')}
+                                    source={{ uri: img }}
                                 />
                             </View>
                             <View style={styles.usersDetail}>

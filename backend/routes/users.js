@@ -1,6 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
+const multer = require('multer')
+const Storage = multer.diskStorage({
+    destination: 'uploads',
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({
+    storage: Storage
+}).single('testImage')
 
 router.get('/', async (req, res) => {
     try {
@@ -12,9 +23,13 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', upload, async (req, res) => {
     const user = new User(
         {
+            image: {
+                data: req.file.filename,
+                contentType: 'image/jpeg'
+            },
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             phoneNumber: req.body.phoneNumber,
