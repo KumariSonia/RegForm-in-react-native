@@ -57,7 +57,7 @@ const UserPopup = (props) => {
                                             borderColor: color.primary,
                                             marginLeft: 10
                                         }}
-                                        source={require('../icons/user-4.png')}
+                                        source={require('../backend/uploads/milu.jpeg')}
                                     />
                                     <Text style={{ fontSize: 9, color: '#0000cc', marginTop: 5, fontWeight: '700' }}>{userData.email}</Text>
                                     <Text style={{ fontSize: 10, marginTop: 5, fontWeight: '600' }}>{userData.phoneNumber}</Text>

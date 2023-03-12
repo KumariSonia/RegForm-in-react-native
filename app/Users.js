@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Button from './Button';
-import color from './color';
-import Header from './Header';
+import { Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import styles from './styles';
 import UserPopup from './UserPopup';
-const Users = ({ navigation }) => {
+const Users = ({ navigation, route }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [userData, setUserData] = useState([]);
     const [user, setUser] = useState();
-    const [img, setImg] = useState()
 
     const getAllUsers = async () => {
         //Api call to fetch all users
@@ -32,16 +28,16 @@ const Users = ({ navigation }) => {
     }
 
     useEffect(() => {
-        getAllUsers()
-    }, [])
+        const focusHandler = navigation.addListener('focus', () => {
+            getAllUsers();
+        });
+
+    }, [navigation]);
 
     const onUserClick = (user) => {
         setModalVisible(true);
         setUser(user);
     }
-
-    var base64Icon = 'data:image/jpeg;base64,MTA5LDEwNSwxMDgsMTE3LDQ2LDEwNiwxMTIsMTAxLDEwMw==';
-
 
     return (
         <SafeAreaView style={styles.container}>
@@ -51,23 +47,11 @@ const Users = ({ navigation }) => {
 
                     {userData.map((user) => {
 
-                        const blob = new Blob([Int8Array.from(user.image.data.data)], { type: user.image.contentType });
-
-                        var reader = new FileReader();
-
-                        reader.readAsDataURL(blob);
-                        reader.onloadend = () => {
-                            var base64String = reader.result;
-                            setImg(base64String)
-                        }
-
-                        console.log("image ", img)
-
                         return (<TouchableOpacity style={styles.userContent} onPress={() => onUserClick(user)} key={user._id}>
                             <View style={styles.usersPhoto}>
                                 <Image
                                     style={styles.usersIcon}
-                                    source={{ uri: img }}
+                                    source={require('../backend/uploads/milu.jpeg')}
                                 />
                             </View>
                             <View style={styles.usersDetail}>

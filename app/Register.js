@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, Image, PermissionsAndroid, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, PermissionsAndroid, SafeAreaView, Text, TouchableOpacity, View, ScrollView } from 'react-native'
 import Button from './Button'
 import Edittext from './Edittext'
 import styles from './styles'
@@ -9,13 +9,17 @@ const phone = require('../icons/phone-call.png');
 const emailIcon = require('../icons/email.png');
 const padlock = require('../icons/padlock.png');
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { ScrollView } from 'react-native'
-
 
 const Register = ({ navigation }) => {
    const [imageUri, setImageUri] = useState('');
+   const [firstName, setFirstName] = useState('');
+   const [lastName, setLastName] = useState('');
    const [email, setEmail] = useState('');
-   const [password, setPassword] = useState('')
+   const [phoneNumber, setPhoneNumber] = useState('');
+   const [password, setPassword] = useState('');
+   const [gender, setGender] = useState('');
+
+
    const [radioButtons, setRadioButtons] = useState([
       {
          id: '1', // acts as primary key, should be unique and non-empty string
@@ -31,25 +35,20 @@ const Register = ({ navigation }) => {
 
    const onPressRadioButton = (radioButtonsArray) => {
       setRadioButtons(radioButtonsArray);
+      if (radioButtonsArray[0].selected) {
+         setGender("Male");
+      }
+      else {
+         setGender("Female");
+      }
    }
 
-   const handleEmail = (text) => {
-      setEmail(text)
-   }
-   const handlePassword = (text) => {
-      setPassword(text)
-   }
-   const login = (email, pass) => {
-      alert('email: ' + email + ' password: ' + pass)
-   }
 
    const openCamera = () => {
       let options = {
          storageOptions: {
-            // path: 'images',
             mediaType: 'photo',
          },
-         // includeBase64: true,
       };
       launchCamera(options, respose => {
          if (respose.didCancel) {
@@ -133,7 +132,16 @@ const Register = ({ navigation }) => {
       ]);
 
    const yourInfo = () => {
-      navigation.navigate('Your Info')
+
+      navigation.navigate('Your Info', {
+         image: imageUri,
+         firstName: firstName,
+         lastName: lastName,
+         phoneNumber: phoneNumber,
+         email: email,
+         gender: gender,
+         password: password
+      })
    }
 
    return (
@@ -150,10 +158,10 @@ const Register = ({ navigation }) => {
                   />
                }
             </TouchableOpacity>
-            <Edittext placeholderName="Enter your first name here" handleChange={handleEmail} title="First Name*" fieldIcon={user} />
-            <Edittext placeholderName="Enter your last name here" handleChange={handlePassword} title="Last Name*" fieldIcon={user} />
-            <Edittext placeholderName="Enter your 10 digit phone  number" handleChange={handleEmail} title="Phone Number*" fieldIcon={phone} />
-            <Edittext placeholderName="Enter your email here" handleChange={handlePassword} title="Email*" fieldIcon={emailIcon} />
+            <Edittext placeholderName="Enter your first name here" handleChange={(text) => { setFirstName(text) }} title="First Name*" fieldIcon={user} />
+            <Edittext placeholderName="Enter your last name here" handleChange={(text) => { setLastName(text) }} title="Last Name*" fieldIcon={user} />
+            <Edittext placeholderName="Enter your 10 digit phone  number" handleChange={(text) => { setPhoneNumber(text) }} title="Phone Number*" fieldIcon={phone} />
+            <Edittext placeholderName="Enter your email here" handleChange={(text) => { setEmail(text) }} title="Email*" fieldIcon={emailIcon} />
             <View>
 
                <Text style={styles.inputTitle}>Gender</Text>
@@ -165,8 +173,8 @@ const Register = ({ navigation }) => {
                />
             </View>
 
-            <Edittext placeholderName="Password" handleChange={handleEmail} title="Password*" fieldIcon={padlock} />
-            <Edittext placeholderName="Confirm Password" handleChange={handlePassword} title="Confirm Password*" fieldIcon={padlock} />
+            <Edittext placeholderName="Password" handleChange={(text) => { setPassword(text) }} title="Password*" fieldIcon={padlock} />
+            <Edittext placeholderName="Confirm Password" title="Confirm Password*" fieldIcon={padlock} />
          </ScrollView>
          <Button buttonName="Next" onClick={yourInfo} />
       </SafeAreaView>

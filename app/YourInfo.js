@@ -4,9 +4,14 @@ import Edittext from './Edittext'
 import styles from './styles'
 import SelectOptions from './SelectOptions'
 
-const YourInfo = ({ navigation }) => {
-    const [email, setEmail] = useState('');
+const YourInfo = ({ route, navigation }) => {
     const [selected, setSelected] = React.useState("");
+    const [yearOfPassing, setYearOfPassing] = useState('');
+    const [grade, setGrade] = useState('');
+    const [experience, setExperience] = useState('');
+    const [designation, setDesignation] = useState('');
+    const [domain, setDomain] = useState('');
+
 
     const education = [
         { key: '1', value: "Post Graduate" },
@@ -15,12 +20,23 @@ const YourInfo = ({ navigation }) => {
         { key: '4', value: "SSC" }
     ]
 
-    const handleEmail = (text) => {
-        setEmail(text)
-    }
-
     const yourAddress = () => {
-        navigation.navigate('Your Address')
+        const { image, firstName, lastName, phoneNumber, email, gender, password } = route.params;
+        navigation.navigate('Your Address', {
+            education: selected,
+            yearOfPassing: yearOfPassing,
+            grade: grade,
+            experience: experience,
+            designation: designation,
+            domain: domain,
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phoneNumber,
+            email: email,
+            gender: gender,
+            password: password,
+            image: image
+        })
     }
 
     const onPreviousClick = () => {
@@ -34,13 +50,13 @@ const YourInfo = ({ navigation }) => {
 
                 <Text style={styles.infoHeader}>Educational Info</Text>
                 <SelectOptions data={education} setSelected={setSelected} value={selected} placeholderName="Select your education" title="Education*" />
-                <Edittext placeholderName="Enter year of passing" handleChange={handleEmail} title="Year of passing*" />
-                <Edittext placeholderName="Enter your passing grade" handleChange={handleEmail} title="Grade*" />
+                <Edittext placeholderName="Enter year of passing" handleChange={(text) => { setYearOfPassing(text) }} title="Year of passing*" />
+                <Edittext placeholderName="Enter your passing grade" handleChange={(text) => { setGrade(text) }} title="Grade*" />
 
                 <Text style={styles.infoHeader}>Profesional Info</Text>
-                <Edittext placeholderName="Enter your experience" handleChange={handleEmail} title="Experience*" />
-                <Edittext placeholderName="Enter your designation" handleChange={handleEmail} title="Designation*" />
-                <Edittext placeholderName="Enter your domain" handleChange={handleEmail} title="Domain" />
+                <Edittext placeholderName="Enter your experience" handleChange={(text) => { setExperience(text) }} title="Experience*" />
+                <Edittext placeholderName="Enter your designation" handleChange={(text) => { setDesignation(text) }} title="Designation*" />
+                <Edittext placeholderName="Enter your domain" handleChange={(text) => { setDomain(text) }} title="Domain" />
             </ScrollView>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', marginLeft: 10, marginRight: 10, height: '24%' }}>
                 <TouchableOpacity
